@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Clinometer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px;
+        }
+        input, button {
+            margin: 10px;
+            padding: 10px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    <h1>------WELCOME------</h1>
+    <h2>CLINOMETER</h2>
+
+    <label>Distance (in meters):</label>
+    <input type="number" id="distance"><br>
+
+    <label>Angle of Elevation (in degrees):</label>
+    <input type="number" id="elevation"><br>
+
+    <label>Angle of Depression (in degrees):</label>
+    <input type="number" id="depression"><br>
+
+    <button onclick="calculateHeight()">Calculate Total Height</button>
+
+    <div id="result"></div>
+    <hr style="margin-top: 40px;">
+    <p>----------------------------------------------------------------------------------------------------------------------</p>
+
+    <script>
+        function calculateHeight() {
+            let l = parseFloat(document.getElementById("distance").value);
+            let a = parseFloat(document.getElementById("elevation").value);
+            let d = parseFloat(document.getElementById("depression").value);
+
+            let a_rad = a * Math.PI / 180;
+            let d_rad = d * Math.PI / 180;
+
+            let total_height = l * (Math.tan(a_rad) + Math.tan(d_rad));
+            document.getElementById("result").innerHTML = "The total height is: " + total_height.toFixed(2) + " meters";
+        }
+    </script>
+</body>
+</html>
